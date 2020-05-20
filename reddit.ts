@@ -8,7 +8,7 @@ let articles: {title: string, url: string, author: string}[] = [];
 rp('https://reddit.com/r/popular.json')
     .then((data: Buffer) => {
         let posts = JSON.parse(data.toString()).data.children;
-        posts.forEach(p => articles.push({ "title": p.data.title, "url": p.data.url, "author": p.data.author}))
+        posts.forEach(p => articles.push({ "title": p.data.title, "url": p.data.url, "author": p.data.author}));
     })
     .then(() => fs.writeFileSync(articleStore, JSON.stringify(articles)))
     .catch((err: Error) => console.log(err));
